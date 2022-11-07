@@ -2,17 +2,11 @@ const express = require("express");
 const app = express();
 require('dotenv').config({ path: __dirname + '/.env' })
 const nodemailer = require('nodemailer');
+const cors = require('cors');
 const port = process.env.PORT || 4000;
 app.use(express.json());
 
-// var transport = nodemailer.createTransport({
-//     host: "smtp.mailtrap.io",
-//     port: 2525,
-//     auth: {
-//         user: process.env['USER'],
-//         pass: process.env['PASS']
-//     }
-// });
+app.use(cors({ origin: true, credentials: true }));
 
 var transport = nodemailer.createTransport({
     host: 'smtp-relay.sendinblue.com',
