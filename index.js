@@ -29,6 +29,10 @@ var transport = nodemailer.createTransport({
 
 });
 
+app.get('/', (req, res) => {
+    res.send("API is up and running...");
+})
+
 app.post('/mail', (req, res) => {
     const data = {
         sender: req.body.name,
