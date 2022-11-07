@@ -17,10 +17,15 @@ app.use(express.json());
 var transport = nodemailer.createTransport({
     host: 'smtp.zoho.com',
     port: 465,
+    secure: true,
     auth: {
-        user: process.env['USER'],
-        pass: process.env['Z_PASS']
-    }
+        type: "OAuth2",
+        user: process.env['MYMAIL'],
+        clientId: process.env['C_ID'],
+        clientSecret: process.env['C_SE'],
+        refreshToken: "1/XXxXxsss-xxxXXXXXxXxx0XXXxxXXx0x00xxx",
+        accessToken: "ya29.Xx_XX0xxxxx-xX0X0XxXXxXxXXXxX0x",
+    },
 
 });
 
@@ -55,3 +60,5 @@ app.listen(port, (err) => {
         console.log("server started at port:", port);
     }
 })
+
+module.exports = app;
