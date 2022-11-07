@@ -15,18 +15,12 @@ app.use(express.json());
 // });
 
 var transport = nodemailer.createTransport({
-    host: 'smtp.zoho.com',
-    port: 465,
-    secure: true,
+    host: 'smtp-relay.sendinblue.com',
+    port: 587,
     auth: {
-        type: "OAuth2",
-        user: process.env['MYMAIL'],
-        clientId: process.env['C_ID'],
-        clientSecret: process.env['C_SE'],
-        refreshToken: "1/XXxXxsss-xxxXXXXXxXxx0XXXxxXXx0x00xxx",
-        accessToken: "ya29.Xx_XX0xxxxx-xX0X0XxXXxXxXXXxX0x",
+        user: process.env['MAIL'],
+        pass: process.env['PASS']
     },
-
 });
 
 app.get('/', (req, res) => {
@@ -41,7 +35,7 @@ app.post('/mail', (req, res) => {
     }
     const message = {
         from: data.email,
-        to: process.env['MYMAIL'],
+        to: process.env['RECEIVE'],
         subject: `portfolio dekhi aayeko - ${data.sender}`,
         text: data.text
     };
