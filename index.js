@@ -6,7 +6,7 @@ const cors = require('cors');
 const port = process.env.PORT || 4000;
 app.use(express.json());
 
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors());
 
 var transport = nodemailer.createTransport({
     host: 'smtp-relay.sendinblue.com',
