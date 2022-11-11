@@ -44,6 +44,29 @@ app.post('/mail', (req, res) => {
 
 });
 
+app.post('/bloodmail', (req, res) => {
+    const data = {
+        sender: req.body.name,
+        email: req.body.email,
+        text: req.body.text
+    }
+    const message = {
+        from: data.email,
+        to: process.env['RECEIVE'],
+        subject: `bloodrequest dekhi aayeko - ${data.sender}`,
+        text: data.text
+    };
+    transport.sendMail(message, function (err, info) {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(info);
+            res.send("successfully sent");
+        }
+    });
+
+});
+
 app.listen(port, (err) => {
     if (err) {
         console.log(err);
